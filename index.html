@@ -12,11 +12,46 @@
     </div>
 
     <!-- The Modal -->
+    <div id="modalStart" class="modal">
+        <div class="modal-content" id="modal-start-content">
+            <div class="modal-header">
+                <p class="modal-title">Faça sua seleção!</p>
+            </div>
+            <div class="modal-body">
+                <div class="modal-line">
+                    <p class="modal-label">Animes:</p>
+                </div>
+                <div class="modal-line" id="animeOptions">
+                </div>
+                        
+                <div class="modal-line">
+                    <p class="modal-label">Limites da degeneração:</p>
+                </div>
+
+                <div class="modal-line" id="degenOptions">
+                    <input type="checkbox" id="furry" name="subscribe" value="newsletter" />
+                    <label for="furry"> <p>Remover Furries </p></label>
+
+                    <input type="checkbox" id="loli" name="subscribe" value="newsletter" />
+                    <label for="loli"><p>Remover Lolis/Shotas</p> </label>
+
+                    <input type="checkbox" id="minor" name="subscribe" value="newsletter" />
+                    <label for="minor"> <p>Remover menores</p> </label>
+                </div>
+
+                <div class="modal-options">
+                    <button class="btModal" onclick="window._modalFunctions.configureSmashOrPass()">Começar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal -->
     <div id="modalInfo" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" id="modal-info-content">
             <div class="modal-header">
                 <p class="modal-title">Informações do Personagem</p>
-                <span class="close">×</span>
+                <span class="close" onclick="window._modalFunctions.closeModal('modalInfo', 'modal-info-content')">×</span>
             </div>
             <div class="modal-body">
                 <div class="modal-line">
@@ -67,7 +102,7 @@
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
                                 </svg>
-                            <button class="btn bt-info" id="myBtn"> 
+                            <button class="btn bt-info" onclick="window._modalFunctions.openModal('modalInfo', 'modal-info-content')"> 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                                     <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>

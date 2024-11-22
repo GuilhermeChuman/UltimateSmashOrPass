@@ -3,7 +3,7 @@
 }
 
 p{
-    font-family: fantasy;
+    font-family: sans-serif;
 }
 
 body{
@@ -33,6 +33,7 @@ body{
     width: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .game{
@@ -254,6 +255,7 @@ body{
 
 .modal-title{
     font-size: 24px;
+    font-weight: bold;
 }
 
 .modal-line{
@@ -263,8 +265,30 @@ body{
     margin-bottom: 10px;
 }
 
+.modal-options{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.btModal{
+    border-radius: 8px;
+    border: none;
+    background-color: aqua;
+    color: black;
+    font-family: sans-serif;
+    font-size: 24px;
+    padding: 10px;
+    cursor: pointer;
+}
+
 .modal-line p{
-    margin: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.modal-line label{
+    margin-right: 15px;
 }
 
 .modal-label{
@@ -281,7 +305,7 @@ body{
 .close {
     color: white;
     float: right;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
 }
 

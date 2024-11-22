@@ -1,18 +1,24 @@
 {
     "data":[
         {
-            "anime": "bleach",
+            "anime": "Bleach",
             "characters":[
                 {
                     "name":"rukia",
                     "age": "18y",
                     "race": "Shinigami",
+                    "furry": false,
+                    "loli": false,
+                    "minor": false,
                     "path":"img/bleach/rukia.jpg" 
                 },
                 {
                     "name":"orihime",
                     "age": "18y",
                     "race": "Shinigami",
+                    "furry": false,
+                    "loli": false,
+                    "minor": false,
                     "path":"img/bleach/orihime.jpg" 
                 }
             ]

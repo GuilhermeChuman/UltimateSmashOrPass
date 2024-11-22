@@ -6,36 +6,30 @@ const text = document.getElementById('CardText');
 const smashCounter = document.getElementById('smashCounter');
 const passCounter = document.getElementById('passCounter');
 
-let selectedAnime = 'bleach';
-let characters = [];
-let index = 0;
-let smashes = [];
-let passes = [];
+var selectedAnimes = [];
+var animes = [];
+var characters = [];
+var index = 0;
+var smashes = [];
+var passes = [];
 
 dt.data.forEach(element => {
-    if(element.anime == selectedAnime)
-        characters = element.characters;
+    animes.push(element)
 });
 
+var animeOptions = document.getElementById('animeOptions');
+
+start();
+
 export function reset(){
-    selectedAnime = 'bleach';
-    characters = [];
-    index = 0;
-    smashes = [];
-    passes = [];
-
-    dt.data.forEach(element => {
-        if(element.anime == selectedAnime)
-            characters = element.characters;
-    });
-
-    loadImage();
-
+    
     smashCounter.innerText = smashes.length;
     passCounter.innerText = passes.length;
+    
+    start();  
 }
 
-export function loadImage(){
+export function loadImages(){
     if(index >= characters.length){
         index = 0;
         animatedDiv.style = "background-image: url("+characters[index].path+");";
@@ -73,7 +67,7 @@ export function pass(){
     setTimeout(() => {
         text.innerHTML = '';
         index += 1;
-        loadImage();
+        loadImages();
     }, 1000); 
 
     buttons.forEach(button => {
@@ -101,7 +95,7 @@ export function smash(){
     setTimeout(() => {
         text.innerHTML = '';
         index += 1;
-        loadImage();
+        loadImages();
     }, 1000); 
 
     buttons.forEach(button => {
@@ -118,33 +112,62 @@ export function smash(){
     }, 1500); // Tempo para a animação completar ida e volta
 }
 
-loadImage();
 window._buttonFunctions = {smash, pass, reset}
+window._modalFunctions = {openModal, closeModal,configureSmashOrPass}
 
-// Get the modal
-var modal = document.getElementById("modalInfo");
+export function start(){
+    characters = [];
+    index = 0;
+    smashes = [];
+    passes = [];
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+    let animeCheckers = '';
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    animes.forEach(element => {
+        animeCheckers = animeCheckers+'<input type="checkbox" id="'+element.anime+'" name="animeOpt" value="'+element.anime+'" /><label for="'+element.anime+'"> <p>'+element.anime+'</p></label>';
+    }); 
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-    setTimeout(function() {
-    modal.style.opacity = 1;
-    document.querySelector('.modal-content').style.transform = 'translateY(0)';
-    }, 10); // Small delay to ensure the display change is processed
+    animeOptions.innerHTML = animeCheckers;
+    
+    openModal('modalStart', 'modal-start-content');
 }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
+export function openModal(modalId, modalContent){
+    let modal = document.getElementById(modalId);
+    modal.style.display = "block";
+    setTimeout(function() {
+        modal.style.opacity = 1;
+        document.getElementById(modalContent).style.transform = 'translateY(0)';
+    }, 10);
+}
+
+export function closeModal(modalId, modalContent){
+    let modal = document.getElementById(modalId);
     modal.style.opacity = 0;
-    document.querySelector('.modal-content').style.transform = 'translateY(-100%)';
+    document.getElementById(modalContent).style.transform = 'translateY(-100%)';
     setTimeout(function() {
       modal.style.display = "none";
-    }, 500); // Match the duration of the transition
+    }, 500)
+}
+
+export function configureSmashOrPass(){
+    let options = document.getElementsByName('animeOpt');
+
+    options.forEach(element => {
+        if(element.checked)
+            selectedAnimes.push(element.value)
+    });
+
+    selectedAnimes.forEach(element => {
+        animes.forEach(a => {
+            if(a.anime == element)
+                a.characters.forEach(char => {
+                    characters.push(char);
+                });
+        });  
+    });
+        
+    loadImages();
+    closeModal('modalStart', 'modal-start-content');
 }
 
